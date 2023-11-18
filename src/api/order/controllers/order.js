@@ -39,7 +39,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           };
         })
       );
-// create cheakout session form payment
+      // create cheakout session form payment
       const session = await stripe.checkout.sessions.create({
         shipping_address_collection: { allowed_countries: ["IN"] },
         payment_method_types: ["card"],
