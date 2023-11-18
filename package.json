@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "shoe-store-backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -10,22 +10,27 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.14.3",
-    "@strapi/plugin-users-permissions": "4.14.3",
-    "@strapi/provider-upload-cloudinary": "^4.14.3",
-    "@strapi/strapi": "4.14.3",
+    "@strapi/plugin-cloud": "4.15.4",
+    "@strapi/plugin-i18n": "4.15.4",
+    "@strapi/plugin-users-permissions": "4.15.4",
+    "@strapi/provider-upload-cloudinary": "^4.15.4",
+    "@strapi/strapi": "4.15.4",
     "dotenv": "^16.3.1",
     "pg": "8.8.0",
-    "stripe": "^13.9.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "stripe": "^14.5.0",
+    "styled-components": "5.3.3"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "466dcda6-b784-45b6-9a48-4340c4bec20e"
+    "uuid": "d8853558-7ee2-4655-818a-7992b9ac8c7d"
   },
   "engines": {
-    "node": ">=16.0.0 <=20.x.x",
+    "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

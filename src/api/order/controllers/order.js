@@ -2,7 +2,7 @@
 ("use strict");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-
+console.log(process.env.STRIPE_KEY);
 /**
  * order controller
  */
@@ -10,11 +10,14 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
+  // recived context object (ctx)
+  // recived all products in ctx
   async create(ctx) {
     const { products } = ctx.request.body;
     try {
       const lineItems = await Promise.all(
         products.map(async (product) => {
+          // find particular item from products
           const item = await strapi
             .service("api::product.product")
             .findOne(product.id);
@@ -22,7 +25,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           // console.log("this is item------->", item);
 
           // console.log("this is product------->", product);
-
+          // return an array ofm object of products
+          // total selected products from user
           return {
             price_data: {
               currency: "inr",
@@ -35,7 +39,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           };
         })
       );
-
+// create cheakout session form payment
       const session = await stripe.checkout.sessions.create({
         shipping_address_collection: { allowed_countries: ["IN"] },
         payment_method_types: ["card"],

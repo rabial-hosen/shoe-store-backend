@@ -686,7 +686,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
@@ -698,7 +698,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::category.category',
       'oneToOne',
@@ -720,13 +719,12 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'order';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    stripId: Attribute.String;
+    stripid: Attribute.String;
     products: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -752,17 +750,18 @@ export interface ApiProductProduct extends Schema.CollectionType {
     singularName: 'product';
     pluralName: 'products';
     displayName: 'product';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.Text & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
     subtitle: Attribute.String;
     price: Attribute.Decimal & Attribute.Required;
-    description: Attribute.RichText;
+    description: Attribute.Blocks;
     size: Attribute.JSON;
-    image: Attribute.Media;
+    image: Attribute.Media & Attribute.Required;
     thumbnail: Attribute.Media & Attribute.Required;
     original_price: Attribute.Decimal;
     slug: Attribute.UID<'api::product.product', 'name'>;
@@ -773,7 +772,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::product.product',
       'oneToOne',
